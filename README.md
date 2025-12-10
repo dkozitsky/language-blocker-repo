@@ -1,6 +1,6 @@
 # Language Redirect Blocker (LRB) 🇺🇦
 
-![Version](https://img.shields.io/badge/version-1.6-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Version](https://img.shields.io/badge/version-1.0-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 A lightweight, drop-in web component that strictly enforces language policies on your website. Detects usage of the blocked language (default: `ru`) and redirects users to a specific "Go Away" page with no option to return until they change their language preference.
 
@@ -9,6 +9,7 @@ A lightweight, drop-in web component that strictly enforces language policies on
 ## ✨ Features
 
 -   **Zero Dependencies**: Pure HTML/CSS/JS. No framework required.
+-   **Auto-Detection**: Instantly blocks users with Russian browser/OS settings (`navigator.language`).
 -   **Strict Redirects**: Automatically redirects blocked users to `goaway.html`.
 -   **Persistent**: Remembers user choice via `localStorage` and `cookie`.
 -   **Themeable**: Fully customizable via CSS variables.
@@ -29,14 +30,19 @@ Copy the files to your project (e.g., `/assets/lrb/`):
     └── lrb/
         ├── language-blocker.css
         ├── lang.js
-        ├── goaway.html
-        └── woff/  (Fonts)
+        └── goaway.html
 ```
 
 ### 2. Include Assets
 Add this to the `<head>` of your website:
 
 ```html
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+<!-- LRB Styles & Script -->
 <link rel="stylesheet" href="assets/lrb/language-blocker.css">
 <script src="assets/lrb/lang.js" defer></script>
 ```
@@ -78,6 +84,15 @@ Override CSS variables in your own stylesheet to match your brand:
   --lrb-bg-color: #0f172a; 
 }
 ```
+
+## 🔜 Roadmap
+
+We are currently working on a **WordPress Plugin** version of this tool! support for popular WP caching plugins and easy installation.
+
+## 💬 Feedback
+
+Have ideas or suggestions? We'd love to hear from you!
+👉 **[Leave Feedback (Google Form)](https://forms.gle/pKpqSHRDUrftyUVU8)**
 
 ## 📄 License
 

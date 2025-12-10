@@ -1,19 +1,3 @@
-@font-face {
-    font-family: 'Bandera Pro';
-    src: url('./woff/BanderaPro.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bandera Pro';
-    src: url('./woff/BanderaProHeavy.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     /* Theme Variables - Override these to match your brand */
     --lrb-bg-color: #000000;
@@ -22,11 +6,50 @@
     --lrb-primary: #8b5cf6;
     --lrb-secondary: #ec4899;
     --lrb-accent: #06b6d4;
-    --lrb-font-family: 'Bandera Pro', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --lrb-font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Internal Variables */
     --lrb-gradient-text: linear-gradient(to right, var(--lrb-primary), var(--lrb-secondary));
     --lrb-gradient-hover: linear-gradient(to right, var(--lrb-secondary), var(--lrb-accent));
+}
+
+/* --- Action Buttons (Index/Demo) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: #24292e;
+    color: white;
+}
+
+.btn-secondary {
+    background: white;
+    color: #475569;
+    border-color: #e2e8f0;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover {
+    background: #000;
+}
+
+.btn-secondary:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+    color: #0f172a;
 }
 
 /* --- Language Switcher --- */
@@ -115,12 +138,22 @@ body.lrb-goaway-body {
 }
 
 .lrb-gradient-word {
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 400;
+    cursor: url('./cursor.svg') 32 32, auto;
+    /* SVG Cursor with hotspot at center */
     background: var(--lrb-gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
     transition: transform 0.3s ease;
+}
+
+/* Custom Cursor for RU button */
+.lrb-btn[data-lang="ru"],
+.lrb-btn[data-lang="ru"]:hover {
+    cursor: url('./cursor.svg') 32 32, auto;
 }
 
 .lrb-gradient-word:hover {
@@ -243,7 +276,7 @@ body.lrb-goaway-body {
     font-family: monospace;
     line-height: 1;
     font-size: 8px;
-    /* Much smaller on mobile to avoid overlap */
+    /* Smallest for mobile */
     white-space: pre;
     color: rgba(255, 255, 255, 0.1);
     position: relative;
@@ -251,10 +284,16 @@ body.lrb-goaway-body {
 }
 
 @media (min-width: 1024px) {
+    .lrb-ascii-art {
+        font-size: 12px;
+        /* Moderate size for laptops */
+    }
+}
 
-    /* Only increase on larger screens */
+@media (min-width: 1600px) {
     .lrb-ascii-art {
         font-size: 20px;
+        /* Large only for huge screens */
     }
 }
 

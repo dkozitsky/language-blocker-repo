@@ -27,15 +27,27 @@
 
         // 1. Determine Language
         const savedLang = localStorage.getItem(config.storageKey);
-
-        // Fallback to cookie if localStorage is empty
         const cookieLang = getCookie(config.storageKey);
 
-        currentLang = savedLang || cookieLang || 'ua';
+        // a) Check Browser Language if no saved preference
+        let browserLang = null;
+        if (!savedLang && !cookieLang) {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang && userLang.toLowerCase().includes('ru')) {
+                browserLang = 'ru';
+            }
+        }
+
+        currentLang = savedLang || cookieLang || browserLang || 'ua';
 
         // 2. persist normalized state
         if (!savedLang && cookieLang) {
             localStorage.setItem(config.storageKey, cookieLang);
+        } else if (browserLang === 'ru') {
+            // If auto-detected as blocked, save it so they are blocked persistently
+            // until they manually switch.
+            setLanguage('ru');
+            return; // setLanguage handles the rest
         }
 
         // 3. Render Switchers
@@ -102,12 +114,14 @@
             const btnUA = document.createElement('button');
             btnUA.className = `lrb-btn ${currentLang !== config.blockedLanguage ? 'active' : ''}`;
             btnUA.textContent = 'UA';
+            btnUA.dataset.lang = 'ua';
             btnUA.onclick = () => setLanguage('ua');
 
             // RU Button
             const btnRU = document.createElement('button');
             btnRU.className = `lrb-btn ${currentLang === config.blockedLanguage ? 'active' : ''}`;
             btnRU.textContent = 'RU';
+            btnRU.dataset.lang = 'ru';
             btnRU.onclick = () => setLanguage('ru');
 
             switcher.appendChild(btnUA);
