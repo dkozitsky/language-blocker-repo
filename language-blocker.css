@@ -1,0 +1,309 @@
+@font-face {
+    font-family: 'Bandera Pro';
+    src: url('./woff/BanderaPro.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bandera Pro';
+    src: url('./woff/BanderaProHeavy.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* Theme Variables - Override these to match your brand */
+    --lrb-bg-color: #000000;
+    --lrb-text-color: #ffffff;
+    --lrb-text-secondary: #a1a1aa;
+    --lrb-primary: #8b5cf6;
+    --lrb-secondary: #ec4899;
+    --lrb-accent: #06b6d4;
+    --lrb-font-family: 'Bandera Pro', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Internal Variables */
+    --lrb-gradient-text: linear-gradient(to right, var(--lrb-primary), var(--lrb-secondary));
+    --lrb-gradient-hover: linear-gradient(to right, var(--lrb-secondary), var(--lrb-accent));
+}
+
+/* --- Language Switcher --- */
+.lrb-switcher {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lrb-btn {
+    border: none;
+    background: transparent;
+    color: var(--lrb-text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-family: var(--lrb-font-family);
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.lrb-btn:hover {
+    color: var(--lrb-text-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.lrb-btn.active {
+    background: var(--lrb-primary);
+    color: white;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+/* --- Go Away Page Styles --- */
+body.lrb-goaway-body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--lrb-bg-color);
+    color: var(--lrb-text-color);
+    font-family: var(--lrb-font-family);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.lrb-pre-title {
+    font-size: clamp(1rem, 3vw, 2rem);
+    font-weight: 400;
+    /* Regular */
+    margin-bottom: 0.5rem;
+    color: white;
+    /* Force white for difference mode */
+    mix-blend-mode: difference;
+    z-index: 10;
+    text-align: center;
+}
+
+.lrb-hero-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    text-align: center;
+    line-height: 1.3;
+    /* Increased to prevent clipping */
+    z-index: 10;
+    font-weight: 900;
+    /* Heavy */
+    margin: 0;
+    padding-bottom: 0.2em;
+    /* Extra space for descenders */
+    /* Contrast protection for non-gradient part */
+    color: white;
+    mix-blend-mode: difference;
+}
+
+/* Override mix-blend-mode for the gradient span to keep colors vivid */
+.lrb-hero-title .lrb-gradient-word {
+    mix-blend-mode: normal;
+}
+
+.lrb-gradient-word {
+    background: var(--lrb-gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.lrb-gradient-word:hover {
+    transform: scale(1.1) rotate(-2deg) skew(-5deg);
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+}
+
+.lrb-subtitle {
+    margin-top: 2rem;
+    color: var(--lrb-text-secondary);
+    font-size: 1.2rem;
+    max-width: 600px;
+    text-align: center;
+    padding: 0 1rem;
+    /* Optional: Apply difference here too if desired, but grey might look weird */
+    z-index: 10;
+}
+
+/* --- ASCII Art & Glitch Effects --- */
+.lrb-ascii-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 5;
+    pointer-events: auto;
+}
+
+/* Glitch Animations */
+@keyframes lrb-glitch-skew {
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(-2deg);
+    }
+
+    40% {
+        transform: skew(2deg);
+    }
+
+    60% {
+        transform: skew(-1deg);
+    }
+
+    80% {
+        transform: skew(1deg);
+    }
+
+    100% {
+        transform: skew(0deg);
+    }
+}
+
+@keyframes lrb-glitch-anim-1 {
+    0% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 0);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(2px, 0);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+        transform: translate(-2px, 0);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, 0);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-2px, 0);
+    }
+
+    100% {
+        clip-path: inset(30% 0 50% 0);
+        transform: translate(2px, 0);
+    }
+}
+
+@keyframes lrb-glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, 0);
+    }
+
+    20% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(-2px, 0);
+    }
+
+    40% {
+        clip-path: inset(70% 0 10% 0);
+        transform: translate(2px, 0);
+    }
+
+    60% {
+        clip-path: inset(20% 0 50% 0);
+        transform: translate(-2px, 0);
+    }
+
+    80% {
+        clip-path: inset(50% 0 30% 0);
+        transform: translate(2px, 0);
+    }
+
+    100% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(-2px, 0);
+    }
+}
+
+.lrb-ascii-art {
+    font-family: monospace;
+    line-height: 1;
+    font-size: 8px;
+    /* Much smaller on mobile to avoid overlap */
+    white-space: pre;
+    color: rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+
+    /* Only increase on larger screens */
+    .lrb-ascii-art {
+        font-size: 20px;
+    }
+}
+
+/* Glitch Effect on Hover */
+.lrb-ascii-container:hover .lrb-ascii-art {
+    color: var(--lrb-primary);
+}
+
+.lrb-ascii-container:hover .lrb-ascii-art:not(.lrb-glitch-layer) {
+    animation: lrb-glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+.lrb-glitch-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    background: transparent;
+    /* Transparent background to see through */
+}
+
+.lrb-ascii-container:hover .lrb-glitch-layer {
+    opacity: 1;
+    background: var(--lrb-bg-color);
+    /* Need background to mask other layers */
+}
+
+.lrb-ascii-container:hover .lrb-glitch-1 {
+    left: 2px;
+    color: #ff00c1;
+    clip-path: inset(44px 0 56px 0);
+    /* Fallback setup */
+    animation: lrb-glitch-anim-1 5s infinite linear alternate-reverse;
+}
+
+.lrb-ascii-container:hover .lrb-glitch-2 {
+    left: -2px;
+    color: #00fff9;
+    clip-path: inset(44px 0 56px 0);
+    /* Fallback setup */
+    animation: lrb-glitch-anim-2 5s infinite linear alternate-reverse;
+}
+
+.lrb-top-nav {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 50;
+}

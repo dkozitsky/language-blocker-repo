@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Redirect Blocker - Документація (v1.6 Polished)</title>
+    <link rel="stylesheet" href="language-blocker.css?v=1.6">
+
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #0f172a;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: #1e293b;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: #334155;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #0f172a;
+            font-family: monospace;
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .demo-box {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .file-structure {
+            font-family: monospace;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+
+    <!-- Підключення скрипта компонента -->
+    <script src="lang.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">LanguageGoAway</div>
+            <!-- Місце для демо-перемикача -->
+            <div class="lrb-element-switcher"></div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Language Redirect Blocker</h1>
+        <p style="font-size: 1.25rem; color: #64748b;">
+            Простий, нейтральний компонент для додавання мовного перемикача та блокування небажаного контенту (RU) на
+            вашому сайті.
+        </p>
+
+        <div class="demo-box">
+            <h3>Як це працює?</h3>
+            <p>Спробуйте перемкнути мову у верхньому правому куті цієї сторінки.</p>
+            <ul>
+                <li><strong>UA</strong>: Ви залишаєтесь на цій сторінці.</li>
+                <li><strong>RU</strong>: Вас буде перенаправлено на спеціальну сторінку-заглушку.</li>
+            </ul>
+        </div>
+
+        <h2>📦 Встановлення</h2>
+
+        <h3>Крок 1: Завантаження</h3>
+        <p>Завантажте архів з файлами або перейдіть на GitHub:</p>
+
+        <p>
+            <a href="#"
+                style="display: inline-flex; align-items: center; gap: 0.5rem; background: #24292e; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 500;">
+                <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                    </path>
+                </svg>
+                Завантажити на GitHub
+            </a>
+        </p>
+
+        <p>Розмістіть файли у папці вашого проекту (наприклад, <code>/assets/lrb/</code>):</p>
+        <div class="file-structure">
+            /your-project<br>
+            ├── index.html<br>
+            └── assets/<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;└── lrb/<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── language-blocker.css<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── lang.js<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── goaway.html<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── woff/ <span style="color: #64748b;">(Шрифти)</span>
+        </div>
+
+        <h3>Крок 2: Підключення</h3>
+        <p>Додайте посилання на CSS та JS у <code>&lt;head&gt;</code> вашого сайту:</p>
+        <pre>&lt;link rel="stylesheet" href="./assets/lrb/language-blocker.css"&gt;
+&lt;script src="./assets/lrb/lang.js" defer&gt;&lt;/script&gt;</pre>
+
+        <h3>Крок 3: Додавання перемикача</h3>
+        <p>Додайте порожній <code>div</code> там, де ви хочете бачити перемикач мов (наприклад, у хедері):</p>
+        <pre>&lt;div class="lrb-element-switcher"&gt;&lt;/div&gt;</pre>
+
+        <h3>Крок 4: Ініціалізація</h3>
+        <p>Додайте скрипт ініціалізації в кінці <code>&lt;body&gt;</code> або в окремому JS файлі. Обов'язково вкажіть
+            правильний шлях до файлу <code>goaway.html</code>:</p>
+        <pre>&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', () => {
+    LanguageGoAway.init({
+      // Важливо: вкажіть правильний шлях відносно кореня сайту
+      redirectUrl: './assets/lrb/goaway.html' 
+    });
+  });
+&lt;/script&gt;</pre>
+
+        <h2>🎨 Кастомізація</h2>
+        <p>Ви можете легко змінювати кольори під стиль вашого бренду, просто перевизначивши CSS змінні.
+            Текст автоматично адаптується до контрасту (mix-blend-mode).</p>
+
+        <pre>/* Ваш style.css */
+:root {
+  /* Основний колір (активна кнопка) */
+  --lrb-primary: #2563eb; 
+  
+  /* Вторинний колір (градієнти) */
+  --lrb-secondary: #06b6d4; 
+  
+  /* Колір фону сторінки goaway */
+  --lrb-bg-color: #0f172a; 
+}
+
+/* 
+ Примітка: Текст автоматично адаптується до контрасту.
+ Шрифти підключаються з папки ./woff/
+*/</pre>
+
+        <h2>⚙️ Конфігурація</h2>
+        <p>Доступні опції для методу <code>init()</code>:</p>
+        <pre>LanguageGoAway.init({
+  blockedLanguage: 'ru',       // Код мови для блокування (default: 'ru')
+  storageKey: 'language',      // Ключ в localStorage (default: 'language')
+  redirectUrl: '/goaway.html', // Шлях до сторінки-заглушки
+  selectors: {
+    switcher: '.lrb-element-switcher' // Селектор контейнера
+  }
+});</pre>
+
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e2e8f0; text-align: center;">
+            <p>Є ідеї для покращення або знайшли баг?</p>
+            <a href="https://forms.google.com" target="_blank"
+                style="display: inline-block; background: #fff; color: #334155; padding: 0.75rem 1.5rem; text-decoration: none; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s;">
+                📝 Залишити відгук
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            LanguageGoAway.init({
+                redirectUrl: 'goaway.html'
+            });
+        });
+    </script>
+</body>
+
+</html>
